@@ -9,8 +9,9 @@ import { Link } from 'react-router-dom';
 
 
 class UserDetail extends Component {
-
   render() {
+    let theUser = this.props.user;
+
     if(!this.props.user) {
       return (
         <div>Please select a user...</div>
@@ -19,7 +20,7 @@ class UserDetail extends Component {
     //get user id from params of URL
     const { id } = this.props.match.params;
     //map over the accounts for the user to create links to them.
-    let accounts = this.props.user.accounts.map(account => {
+    let accounts = theUser.accounts.map(account => {
 
       //creating a Link with the account type for
       //each account.
@@ -27,11 +28,12 @@ class UserDetail extends Component {
         <div key={account.id}>
           <Link
             onClick={() => this.props.selectAccount(account)}
-            to={`/users/${id}/${account.id}`}>{account.accountType}</Link>
+            to={`/users/${id}/${account.accountType}`}>{account.accountType}</Link>
         </div>
 
       )
     })
+
     return (
       <div className="col-md-6">
         <div className= "card">
@@ -64,8 +66,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    selectedAccount: selectAccount
-  })
+    selectAccount: selectAccount,
+    selectUser: selectUser
+  }, dispatch)
 }
 
 /*
