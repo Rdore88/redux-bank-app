@@ -39,7 +39,6 @@ class AccountDetail extends Component{
 
   render(){
     let n = 1;
-    console.log("state", this.state);
     return(
       <div className="account">
         <h2>Account Information</h2>
@@ -54,7 +53,7 @@ class AccountDetail extends Component{
           closeTimeoutMS={n}
           shouldCloseOnOverlayClick={false}
           style={customStyles}
-          contentLabel="Example Modal"
+          contentLabel="Transaction"
         >
         <Transaction closeModal={this.closeModal}/>
      </Modal>
@@ -68,7 +67,6 @@ class AccountDetail extends Component{
 
 
 function mapStateToProps(state) {
-  console.log("STATE!!", state);
   return {
     user: state.selectedUser,
     account: state.selectedAccount
