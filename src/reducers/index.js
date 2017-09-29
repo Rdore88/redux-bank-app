@@ -24,14 +24,25 @@ const reducer = function(state = initialState, action) {
                 }
               });
         case WITHDRAW_FUNDS:
+            const userIdx = state.users.findIndex(user => user._id === state.selectedUser._id);
+            const accountIdx = state.users[userIdx].accounts.findIndex(account => account.id === state.selectedAccount.id);
+            console.log("acc index", accountIdx);
+            console.log("user", userIdx);
+            console.log("amount", action.payload);
             return update(state, {
-                selectedAccount: {
-                  balance: {
-                      $apply: function(balance) {
-                        console.log("BALANCE", balance - action.payload);
-                          return balance - action.payload
-                      }
-                  }
+                users: {
+                    [userIdx]: {
+                        accounts: {
+                            [accountIdx]: {
+                                balance: {
+                                    $apply: function(balance) {
+                                      console.log("BALANCE", balance - action.payload);
+                                        return balance - action.payload
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             })
         default:

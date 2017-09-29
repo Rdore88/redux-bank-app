@@ -26,6 +26,7 @@ class Transaction extends Component{
       <button className="btn btn-primary" onClick={()=> this.handleAllTheThings(5)}>$5</button>
       <button className="btn btn-success" onClick={()=> this.handleAllTheThings(10)}>$10</button>
       <button className="btn btn-info" onClick={()=> this.handleAllTheThings(20)}>$20</button>
+      <button className="btn btn-warning" onClick={this.props.closeModal}>Cancel</button>
       </div>
     )
   }
@@ -33,9 +34,11 @@ class Transaction extends Component{
 }
 
 function mapStateToProps(state){
-  console.log("STATE!!!!", state);
+  const userIdx = state.users.findIndex(user => user._id === state.selectedUser._id);
+  const accountIdx = state.users[userIdx].accounts.findIndex(account => account.id === state.selectedAccount.id);
+
   return{
-    account: state.selectedAccount
+    account: state.users[userIdx].accounts[accountIdx]
   }
 }
 
