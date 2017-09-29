@@ -1,4 +1,3 @@
-import {combineReducers} from 'redux';
 import {USER_SELECTED, ACCOUNT_SELECTED, WITHDRAW_FUNDS} from '../actions/index';
 import userList from '../data/users';
 import update from 'immutability-helper';

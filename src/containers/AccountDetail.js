@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
 import Modal from 'react-modal';
 import Transaction from './Transaction'
 
-import {selectAccount} from '../actions/index';
 
 const customStyles = {
     top                   : '50%',
